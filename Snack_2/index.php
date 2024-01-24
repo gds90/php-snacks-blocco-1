@@ -10,23 +10,13 @@ if (isset($_GET['name']) && isset($_GET['email']) && isset($_GET['age'])) {
     $email = $_GET['email'];
     $age = $_GET['age'];
 
-    // verifico che $name sia più lungo di 3 caratteri
-    if (strlen($name) > 3) {
-
-        // verifico che la mail sia un indirizzo email valido
-        if (filter_var($email, FILTER_VALIDATE_EMAIL)) {
-
-            // verifico che l'età inserita sia un valore numeri
-            if (is_numeric($age)) {
-                echo "Accesso riuscito";
-            } else {
-                echo "Accesso negato, inserisci un'età valida in numero";
-            }
-        } else {
-            echo "Accesso negato, inserisci un indirizzo email valido";
-        }
+    // verifico che name sia più lungo di 3 caratteri, che la mail sia un indirizzo email valido e che l'età inserita sia un valore numeri
+    if (strlen($name) > 3 && filter_var($email, FILTER_VALIDATE_EMAIL) && is_numeric($age)) {
+        // se le condizioni sono soddisfatte mostro "Accesso riuscito"
+        echo "Accesso riuscito";
     } else {
-        echo "Accesso negato, inserisci un nome di almeno 4 caratteri";
+        // altrimenti mostro "Accesso negato"
+        echo "Accesso negato";
     }
 } else {
     echo "Inserisci i tuoi dati:";
